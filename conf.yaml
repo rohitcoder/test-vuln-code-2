@@ -1,0 +1,177 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/test_db?useUnicode=true&characterEncoding=utf8&useSSL=false&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      idle-timeout: 4200
+      connection-timeout: 23000
+      maximum-pool-size: 43
+      minimum-idle: 123
+      max-lifetime: 43000
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    database: MYSQL
+    openInView: false
+    show_sql: true
+    generate-ddl: true
+    hibernate:
+      naming-strategy: org.springframework.boot.orm.jpa.hibernate.SpringNamingStrategy
+      generate_statistics: false
+      ddl-auto: update
+    properties:
+      hibernate.integration.envers.enabled: false
+      hibernate.cache.use_second_level_cache: false
+      hibernate.cache.use_query_cache: false
+      hibernate.generate_statistics: false
+      hibernate.jdbc.time_zone: Asia/Kolkata
+  kafka:
+    bootstrapAddress: localhost:9092
+    groupId: juspay-recon-consumer-group
+    concurrency.default: 10
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+merchant:
+  configuration:
+    GP_FLINK:
+      mockEnabled: true
+      tpvEnabled: false
+      providerConfigurationMap:
+        ICICI:
+          mcc: 8050
+          apiKey: '8ld4lo760t9JJ2VID2xrIY0Hvase32fp'
+          merchantName: 'merchantabcd'
+          payeeVPA: 'merchvpa@icici'
+          subMerchantName: 'submerchantname'
+          merchantId: '432134'
+          subMerchantId: '432134'
+          percentageRange: "0-99"
+    FULLERTON:
+      mockEnabled: true
+      tpvEnabled: false
+      providerConfigurationMap:
+        ICICI:
+          mcc: 8050
+          apiKey: ${{ secrets.FULLERTON_API_KEY}}
+          merchantName: 'Fullerton'
+          payeeVPA: 'merchvpa@icici'
+          subMerchantName: 'submerchantname'
+          merchantId: '432134'
+          subMerchantId: '432134'
+          mobileNumber: "8526977142"
+          deviceId: "876543234567621343267882"
+          profileId: "6432423"
+          payeeName: "Razorpay"
+          percentageRange: "0-99"
+    GCS-EMID:
+      mockEnabled: false
+      tpvEnabled: false
+      providerConfigurationMap:
+        ICICI:
+          mcc: 8050
+          apiKey: '8ld4lo760t9JJ2VID2xrIY0Hvase32fp'
+          merchantName: 'merchantabcd'
+          payeeVPA: 'merchvpa@icici'
+          subMerchantName: 'submerchantname'
+          merchantId: '432134'
+          subMerchantId: '432134'
+          percentageRange: "0-99"
+    M001:
+      mockEnabled: false
+      tpvEnabled: true
+      providerConfigurationMap:
+        ICICI:
+          mcc: 5094
+          apiKey: 'UDM8Q9Bg7NFeTqJ8jhds2WTQfkCvtDdk'
+          merchantName: 'merchantabcd'
+          payeeVPA: 'merchvpa@icici'
+          subMerchantName: 'submerchantname'
+          merchantId: '414794'
+          subMerchantId: '414794'
+          percentageRange: "0-99"
+    OMNICARD-EMID:
+      mockEnabled: false
+      tpvEnabled: false
+      providerConfigurationMap:
+        ICICI:
+          mcc: 8050
+          apiKey: '8ld4lo760t9JJ2VID2xrIY0Hvase32fp'
+          merchantName: 'merchantabcd'
+          payeeVPA: 'merchvpa@icici'
+          subMerchantName: 'submerchantname'
+          merchantId: '432134'
+          subMerchantId: '432134'
+          percentageRange: "0-99"
+    M002:
+      mockEnabled: false
+      tpvEnabled: false
+      providerConfigurationMap:
+        ICICI:
+          mcc: 8050
+          apiKey: '8ld4lo760t9JJ2VID2xrIY0Hvase32fp'
+          merchantName: 'merchantabcd'
+          payeeVPA: 'merchvpa@icici'
+          subMerchantName: 'submerchantname'
+          merchantId: '432134'
+          subMerchantId: '432134'
+          percentageRange: "0-99"
+    HARSH-EMID:
+      mockEnabled: false
+      tpvEnabled: false
+      providerConfigurationMap:
+        ICICI:
+          mcc: 8050
+          apiKey: '8ld4lo760t9JJ2VID2xrIY0Hvase32fp'
+          merchantName: 'merchantabcd'
+          payeeVPA: 'merchvpa@icici'
+          subMerchantName: 'submerchantname'
+          merchantId: '432134'
+          subMerchantId: '432134'
+          percentageRange: "100-100"
+        HDFC:
+          mcc: 6211
+          apiKey: 'K7nPHH5uPuKhrEghYJLO8Qilf5xH'
+          merchantName: 'jhonnybravo'
+          payeeVPA: 'Razorpayjhonny@hdfcbank'
+          merchantId: 'HDFC000003214023'
+          percentageRange: "0-99"
+    MF-EMID:
+      cnpExpiryInMinutes: 1
+      mockEnabled: false
+      tpvEnabled: false
+      providerConfigurationMap:
+        ICICI:
+          mcc: 5094
+          apiKey: '5rPRAnA2hgL6hAFZqTmmuCTAH4AShuHN'
+          merchantName: 'Razorpay'
+          payeeVPA: 'mandateRazorpay@icici'
+          subMerchantName: 'Razorpay'
+          merchantId: '415762'
+          subMerchantId: '415762'
+          percentageRange: "0-99"
+        HDFC:
+          mcc: 6211
+          apiKey: 'K7nPHH5uPuKhrEghYJLO8Qilf5xH'
+          merchantName: 'jhonnybravo'
+          payeeVPA: 'Razorpayjhonny@hdfcbank'
+          merchantId: 'HDFC000003214023'
+          percentageRange: "100-100"
+sftp:
+  user: user-rw
+  password: Ymg6UvC6V
+  hostIP: 5.11.38.43
+  mfReportFolderPath: "/sftp/RAZORPAY/UPI_AUTOPAY/"
+sftp2:
+  user: userb-rw
+  password: ${{ secrets.SFTP_PASS }}
+  hostIP: 5.11.38.43
+  mfReportFolderPath: "/sftp/RAZORPAY/UPI_AUTOPAY/"
+icici:
+  adapter:
+    url: "http://qa-mocker-service-qa.qa.svc.cluster.local:9321"
+hdfc:
+  adapter:
+    url: "http://localhost:9025"
